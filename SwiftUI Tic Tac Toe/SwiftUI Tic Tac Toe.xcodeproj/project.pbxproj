@@ -14,6 +14,7 @@
 		6EA6C3D62A07F73B00770E4D /* SwiftUI_Tic_Tac_ToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA6C3D52A07F73B00770E4D /* SwiftUI_Tic_Tac_ToeTests.swift */; };
 		6EA6C3E02A07F73B00770E4D /* SwiftUI_Tic_Tac_ToeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA6C3DF2A07F73B00770E4D /* SwiftUI_Tic_Tac_ToeUITests.swift */; };
 		6EA6C3E22A07F73B00770E4D /* SwiftUI_Tic_Tac_ToeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA6C3E12A07F73B00770E4D /* SwiftUI_Tic_Tac_ToeUITestsLaunchTests.swift */; };
+		6EA6C3EF2A0842F800770E4D /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA6C3EE2A0842F800770E4D /* Alerts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		6EA6C3DB2A07F73B00770E4D /* SwiftUI Tic Tac ToeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI Tic Tac ToeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA6C3DF2A07F73B00770E4D /* SwiftUI_Tic_Tac_ToeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_Tic_Tac_ToeUITests.swift; sourceTree = "<group>"; };
 		6EA6C3E12A07F73B00770E4D /* SwiftUI_Tic_Tac_ToeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_Tic_Tac_ToeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6EA6C3EE2A0842F800770E4D /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				6EA6C3C42A07F73A00770E4D /* SwiftUI_Tic_Tac_ToeApp.swift */,
 				6EA6C3C62A07F73A00770E4D /* ContentView.swift */,
+				6EA6C3EE2A0842F800770E4D /* Alerts.swift */,
 				6EA6C3C82A07F73A00770E4D /* Assets.xcassets */,
 				6EA6C3CA2A07F73A00770E4D /* Preview Content */,
 			);
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EA6C3C72A07F73A00770E4D /* ContentView.swift in Sources */,
+				6EA6C3EF2A0842F800770E4D /* Alerts.swift in Sources */,
 				6EA6C3C52A07F73A00770E4D /* SwiftUI_Tic_Tac_ToeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

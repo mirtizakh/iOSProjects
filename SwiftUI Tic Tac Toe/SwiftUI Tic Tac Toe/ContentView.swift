@@ -8,8 +8,6 @@
 import SwiftUI
 
 
-
-
 struct ContentView: View {
     
     var columns : [GridItem] = [ GridItem(.flexible()),
@@ -19,6 +17,7 @@ struct ContentView: View {
     
     @State private var moves : [Move?] = Array(repeating: nil, count: 9)
     @State private var isGameBoardDisabled = false
+    @State private var alertItem : AlertItem?
     
     var body: some View {
         
@@ -42,11 +41,18 @@ struct ContentView: View {
                             if(isSpaceAvailable(move: moves[i])) {
                                 moves[i] = Move(player: .human, boardIndex: i)
                                 
-                                isGameBoardDisabled = true
-                                
                                 if(checkWinCondition(for: .human, in: moves)) {
                                     
+                                    alertItem = AlertContent.humanWin
+                                    return
                                 }
+                                
+                                if checkForDraw(in: moves) {
+                                    alertItem = AlertContent.draw
+                                    return
+                                }
+                                
+                                isGameBoardDisabled = true
                             } else {
                                 return
                             }
@@ -60,7 +66,13 @@ struct ContentView: View {
                                 isGameBoardDisabled = false
                                 
                                 if(checkWinCondition(for: .computer, in: moves)) {
-                                    
+                                    alertItem = AlertContent.computerWin
+                                    return
+                                }
+                                
+                                if checkForDraw(in: moves) {
+                                    alertItem = AlertContent.draw
+                                    return
                                 }
                                 
                             }
@@ -74,8 +86,16 @@ struct ContentView: View {
             }
             .disabled(isGameBoardDisabled)
             .padding()
+            .alert(item : $alertItem , content: {
+                alertItem in
+                Alert(title: alertItem.title,message: alertItem.message, dismissButton: .default(alertItem.buttonText, action: {resetGame()} ))
+            } )
         }
         
+    }
+    
+    func resetGame() {
+        moves  = Array(repeating: nil, count: 9)
     }
     
     func isSpaceAvailable(move : Move?) -> Bool {
