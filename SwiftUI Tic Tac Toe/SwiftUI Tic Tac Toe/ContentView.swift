@@ -102,7 +102,61 @@ struct ContentView: View {
         return move == nil
     }
     
+    /*
+     If AI can win, then win
+     If AI can't win, then block
+     If AI can't block, the take center position
+     If AI can't take middle square, take randon available square
+     */
     func determineCompoterMovePosition(in moves : [Move?]) -> Int {
+        // If AI can win, then win
+        
+        let winPattern : Set<Set<Int>> = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [0,4,8], [1,4,7] , [2,5,8], [2,4,6]]
+        
+        let computerMoves = moves.compactMap {$0}.filter{$0.player == .computer}
+        
+        let computerMovesPositions  = computerMoves.map {$0.boardIndex}
+        
+        for pattern in winPattern {
+            let winPositions = pattern.subtracting(computerMovesPositions)
+            
+            if winPositions.count == 1
+            {
+                let isAvailable = !isSpaceOccupiedForComputer(in: moves, index: winPositions.first!)
+                
+                if isAvailable {
+                    return winPositions.first!
+                }
+            }
+        }
+        
+        //  If AI can't win, then block
+        
+        let humanMoves = moves.compactMap {$0}.filter{$0.player == .human}
+        
+        let humanMovesPositions  = humanMoves.map {$0.boardIndex}
+        
+        for pattern in winPattern {
+            let winPositions = pattern.subtracting(humanMovesPositions)
+            
+            if winPositions.count == 1
+            {
+                let isAvailable = !isSpaceOccupiedForComputer(in: moves, index: winPositions.first!)
+                
+                if isAvailable {
+                    return winPositions.first!
+                }
+            }
+        }
+        
+        
+        // If AI can't block, the take center position
+        let centerPosition = 4
+        if !isSpaceOccupiedForComputer(in: moves, index: centerPosition) {
+            return centerPosition
+        }
+        
+        // If AI can't take middle square, take randon available square
         var movePosition  = Int.random(in: 0..<9)
         
         while (isSpaceOccupiedForComputer(in : moves, index: movePosition)) {
