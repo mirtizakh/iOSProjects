@@ -7,15 +7,61 @@
 
 import SwiftUI
 
+
+
+
 struct ContentView: View {
+    
+    var columns : [GridItem] = [ GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()) ]
+    
+    
+    @State private var moves : [Move?] = Array(repeating: nil, count: 9)
+    
+    @State private var isHumanTurn = true
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        
+        GeometryReader { geometry in
+            VStack{
+              Spacer()
+                LazyVGrid (columns: columns, spacing: 10){
+                    ForEach(0..<9) { i in
+                        ZStack {
+                            Circle()
+                                .foregroundColor(.red)
+                                .opacity(0.5)
+                                .frame(width: geometry.size.width/3 - 15,height: geometry.size.width/3 - 15)
+                            
+                            Image(systemName: moves[i]?.indicator ?? "")
+                                .resizable()
+                                .frame(width: 40,height: 40)
+                                .foregroundColor(.white)
+                        }.onTapGesture {
+                            moves[i] = Move(player: isHumanTurn ? .human : .computer, boardIndex: i)
+                            
+                            isHumanTurn.toggle()
+                        }
+                    }
+                }
+              Spacer()
+            }.padding()
         }
-        .padding()
+        
+    }
+}
+
+enum Player {
+    case human , computer
+}
+
+struct Move {
+    let player : Player
+    let boardIndex : Int
+    
+    var indicator : String {
+        return player == .human ? "xmark" : "circle"
     }
 }
 
