@@ -122,7 +122,7 @@ final class GameViewModel : ObservableObject {
             return centerPosition
         }
         
-        // If AI can't take middle square, take randon available square
+        // If AI can't take middle square, take random available square
         var movePosition  = Int.random(in: 0..<9)
         
         while (isSpaceOccupiedForComputer(in : moves, index: movePosition)) {
